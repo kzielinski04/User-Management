@@ -15,4 +15,12 @@ def add_user(user_data:dict):
     users = load_users()
     users.append(user_data)
     with open(USERS_PATH, 'w') as file:
-        json.dump(users, file)
+        json.dump(users, file, indent = 4)
+
+def remove_user(user_id:int):
+    """Remove user from users.json"""
+    users = load_users()
+    updated_users = [users for user in users if users["user_id"] != user_id]
+    if len(users) != len(updated_users):
+        with open(USERS_PATH, 'r') as file:
+            json.dump(updated_users, file, indent = 4)
