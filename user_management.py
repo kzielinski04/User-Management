@@ -24,3 +24,12 @@ def remove_user(user_id:int):
     if len(users) != len(updated_users):
         with open(USERS_PATH, 'r') as file:
             json.dump(updated_users, file, indent = 4)
+
+def edit_user(user_id:int, updated_data:dict):
+    """Edit user from user.json"""
+    users = load_users()
+    for user in users:
+        if user["user_id"] == user_id:
+            user.update(updated_data)
+    with open(USERS_PATH, 'w') as file:
+        json.dump(users, file, indent = 4)
