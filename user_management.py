@@ -273,9 +273,3 @@ def generate_password() -> str:
     if value_counter == 0:
         generate_password()
     return password
-        
-print(generate_password())
-
-"""
-Implementuj funkcję generującą silne hasło o minimalnej długości 12 znaków, zawierające duże litery, małe litery, cyfry oraz znaki specjalne.
-"""
