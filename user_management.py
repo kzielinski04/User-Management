@@ -273,3 +273,49 @@ def generate_password() -> str:
     if value_counter == 0:
         generate_password()
     return password
+
+def validate_password(password:str) -> bool:
+    if len(password) < 12:
+        return False
+    if "123" in password:
+        return False
+    if "qwerty" in password.lower():
+        return False
+    if "password" in password.lower():
+        return False
+    if "admin" in password.lower():
+        return False
+    if "test" in password.lower():
+        return False
+
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    special_characters = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=']
+    letters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm']
+    capital_letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
+    value_counter = 0
+    for sign in numbers:
+        if sign in password:
+            value_counter += 1
+    if value_counter == 0:
+        return False
+    value_counter = 0
+    for sign in special_characters:
+        if sign in password:
+            value_counter += 1
+    if value_counter == 0:
+        return False
+    value_counter = 0
+    for sign in letters:
+        if sign in password:
+            value_counter += 1
+    if value_counter == 0:
+        return False
+    value_counter = 0
+    for sign in capital_letters:
+        if sign in password:
+            value_counter += 1
+    if value_counter == 0:
+        return False
+    return True
+
+print(validate_password("ASQWERyJD*@(022kkk"))
