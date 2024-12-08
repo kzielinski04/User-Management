@@ -124,8 +124,74 @@ def validate_nip(user_nip:str) -> bool:
 
 def validate_regon(user_regon:str) -> bool:
     """Validate user's regon"""
-    pass
-
+    if len(user_regon) != 9:
+        if len(user_regon) != 14:
+            return False
+    sum = 0
+    if len(user_regon) == 9:
+        control_digit = int(user_regon[8])
+        for i in range(len(user_regon)):
+            current_digit = int(user_regon[i])
+            if i == 0:
+                sum += current_digit * 8
+            if i == 1:
+                sum += current_digit * 9
+            if i == 2:
+                sum += current_digit * 2
+            if i == 3:
+                sum += current_digit * 3
+            if i == 4:
+                sum += current_digit * 4
+            if i == 5:
+                sum += current_digit * 5
+            if i == 6:
+                sum += current_digit * 6
+            if i == 7:
+                sum += current_digit * 7
+        if sum % 11 == 10:
+            sum = 0
+        else:
+            sum %= 11
+        if sum == control_digit:
+            return True
+        else:
+            return False
+    else: 
+        control_digit = int(user_regon[13])
+        for i in range(len(user_regon)):
+            current_digit = int(user_regon[i])
+            if i == 0:
+                sum += current_digit * 2
+            if i == 1:
+                sum += current_digit * 4
+            if i == 2:
+                sum += current_digit * 8
+            if i == 3:
+                sum += current_digit * 5
+            if i == 4:
+                sum += current_digit * 0
+            if i == 5:
+                sum += current_digit * 9
+            if i == 6:
+                sum += current_digit * 7
+            if i == 7:
+                sum += current_digit * 3
+            if i == 8:
+                sum += current_digit * 6
+            if i == 9:
+                sum += current_digit * 1
+            if i == 10:
+                sum += current_digit * 2
+            if i == 11:
+                sum += current_digit * 4
+            if i == 12:
+                sum += current_digit * 8
+        sum %= 11
+        if sum == control_digit:
+            return True
+        else:
+            return False
+ 
 def load_users() -> list:
     """Load users from users.json"""
     if not os.path.exists(USERS_PATH):
@@ -161,3 +227,5 @@ def edit_user(user_id:int, updated_data:dict):
             user.update(updated_data)
     with open(USERS_PATH, 'w') as file:
         json.dump(users, file, indent = 4)
+
+print(validate_regon("12345678512347"))
