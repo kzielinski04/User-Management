@@ -228,4 +228,48 @@ def edit_user(user_id:int, updated_data:dict):
     with open(USERS_PATH, 'w') as file:
         json.dump(users, file, indent = 4)
 
-print(validate_regon("12345678512347"))
+def generate_password() -> str:
+    password = ""
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    special_characters = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=']
+    letters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm']
+    capital_letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
+    while(len(password) <= 12):
+        set_choice = random.randint(1, 4)
+        if set_choice == 1:
+            sign_choice = random.choice(numbers)
+            password += sign_choice
+        elif set_choice == 2:
+            sign_choice = random.choice(special_characters)
+            password += sign_choice
+        elif set_choice == 3:
+            sign_choice = random.choice(letters)
+            password += sign_choice
+        else:
+            sign_choice = random.choice(capital_letters)
+            password += sign_choice
+    value_counter = 0
+    for sign in numbers:
+        if sign in password:
+            value_counter += 1
+    if value_counter == 0:
+        generate_password()
+    value_counter = 0
+    for sign in special_characters:
+        if sign in password:
+            value_counter += 1
+    if value_counter == 0:
+        generate_password()
+    value_counter = 0
+    for sign in letters:
+        if sign in password:
+            value_counter += 1
+    if value_counter == 0:
+        generate_password()
+    value_counter = 0
+    for sign in capital_letters:
+        if sign in password:
+            value_counter += 1
+    if value_counter == 0:
+        generate_password()
+    return password
