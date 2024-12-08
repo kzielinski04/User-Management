@@ -233,6 +233,7 @@ def edit_user(user_id:int, updated_data:dict):
         json.dump(users, file, indent = 4)
 
 def generate_password() -> str:
+    """Generate random password"""
     password = ""
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     special_characters = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=']
@@ -280,6 +281,7 @@ def generate_password() -> str:
     return password
 
 def validate_password(password:str) -> bool:
+    """Validate password"""
     if len(password) < 12:
         return False
     if "123" in password:
