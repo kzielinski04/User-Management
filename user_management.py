@@ -6,7 +6,35 @@ def validate_pesel(user_pesel:str) -> bool:
     pass
 
 def validate_nip(user_nip:str) -> bool:
-    pass
+    if len(user_nip) != 10:
+        return False
+    last_digit = int(user_nip[9])
+    sum = 0
+    for i in range(len(user_nip)):
+        current_digit = int(user_nip[i])
+        if i == 0:
+            sum += current_digit * 6
+        if i == 1:
+            sum += current_digit * 5
+        if i == 2:
+            sum += current_digit * 7
+        if i == 3:
+            sum += current_digit * 2
+        if i == 4:
+            sum += current_digit * 3
+        if i == 5:
+            sum += current_digit * 4
+        if i == 6:
+            sum += current_digit * 5
+        if i == 7:
+            sum += current_digit * 6
+        if i == 8:
+            sum += current_digit * 7
+    sum %= 11
+    if sum == last_digit:
+        return True
+    else:
+        return False
 
 def validate_regon(user_regon:str) -> bool:
     pass
