@@ -216,6 +216,8 @@ def remove_user(user_id:int):
     if len(users) != len(updated_users):
         with open(USERS_PATH, 'r') as file:
             json.dump(updated_users, file, indent = 4)
+    else:
+        return
 
 def edit_user(user_id:int, updated_data:dict):
     """Edit user from user.json"""
