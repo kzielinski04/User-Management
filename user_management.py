@@ -227,6 +227,8 @@ def edit_user(user_id:int, updated_data:dict):
     for user in users:
         if user["user_id"] == user_id:
             user.update(updated_data)
+        else:
+            return
     with open(USERS_PATH, 'w') as file:
         json.dump(users, file, indent = 4)
 
