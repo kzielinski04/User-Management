@@ -234,7 +234,8 @@ def generate_password() -> str:
     special_characters = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=']
     letters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm']
     capital_letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
-    while(len(password) <= 12):
+    password_length = random.randint(12, 24)
+    while(len(password) <= password_length):
         set_choice = random.randint(1, 4)
         if set_choice == 1:
             sign_choice = random.choice(numbers)
