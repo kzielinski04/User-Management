@@ -318,5 +318,3 @@ def validate_password(password:str) -> bool:
     if value_counter == 0:
         return False
     return True
-
-print(validate_password("ASQWERyJD*@(022kkk"))
