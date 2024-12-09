@@ -199,12 +199,20 @@ def load_users() -> list:
     with open(USERS_PATH, 'r') as file:
         users = json.load(file)
         return users
-    
+
+def get_next_user_id(users) -> int:
+    """Return the next available user ID"""
+    if users:
+        max_id = max(user["user_id"] for user in users)
+        return max_id + 1
+    return 1
+
 def add_user(user_data:dict):
     """Add new user to users.json"""
     if validate_pesel(user_data["user_pesel"]) == False or validate_nip(user_data["user_nip"]) == False or validate_regon(user_data["user_regon"]) == False:
         return
     users = load_users()
+    user_data["user_id"] = get_next_user_id(users)
     users.append(user_data)
     with open(USERS_PATH, 'w') as file:
         json.dump(users, file, indent = 4)
@@ -212,9 +220,9 @@ def add_user(user_data:dict):
 def remove_user(user_id:int):
     """Remove user from users.json"""
     users = load_users()
-    updated_users = [users for user in users if users["user_id"] != user_id]
+    updated_users = [user for user in users if user["user_id"] != user_id]
     if len(users) != len(updated_users):
-        with open(USERS_PATH, 'r') as file:
+        with open(USERS_PATH, 'w') as file:
             json.dump(updated_users, file, indent = 4)
     else:
         return
@@ -227,8 +235,6 @@ def edit_user(user_id:int, updated_data:dict):
     for user in users:
         if user["user_id"] == user_id:
             user.update(updated_data)
-        else:
-            return
     with open(USERS_PATH, 'w') as file:
         json.dump(users, file, indent = 4)
 
@@ -324,3 +330,10 @@ def validate_password(password:str) -> bool:
     if value_counter == 0:
         return False
     return True
+
+good_password = "n^1M!Azt%om&)+1" #Strong password
+bad_password_1 = "kjAs2833LL" #Too short, lack of special characters
+bad_password_2 = "kajsgu@###222qwerty" #Lack of capital letters, contains a commonly used pattern
+print(validate_password(good_password))
+print(validate_password(bad_password_1))
+print(validate_password(bad_password_2))
