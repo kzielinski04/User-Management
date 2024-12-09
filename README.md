@@ -17,6 +17,7 @@ To run this program, firstly you need to install Python. Here's how to do it:
 ### Linux (Debian/Ubuntu)
 
 Type these instructions in terminal:
+
 ```bash
 sudo apt update
 sudo apt install python3
@@ -25,6 +26,7 @@ sudo apt install python3
 ## Creating a virutal environment
 
 It is recommended to use virual environments to separate your dependencies from global Python packages.
+
 ```bash
 python3 -m venv venv
 ```
@@ -32,11 +34,13 @@ python3 -m venv venv
 ### Activating a virual environment
 
 Windows:
+
 ```bash
 venv/Scripts/activate
 ```
 
 Linux:
+
 ```bash
 source venv/bin/activate
 ```
@@ -51,7 +55,8 @@ source venv/bin/activate
 
 ## Example of usage
 
-### Code: 
+### Code
+
 ```python
 user = {"user_name" : "John Smith", "user_pesel" : "02070803628", "user_nip" : "1234563218", "user_regon" : "380186266"} #Let's create a dictionary that contains the data of some user
 add_user(user) #Calling add_user() function will add the data stored in user variable to users.json file
@@ -59,7 +64,7 @@ add_user(user) #Calling add_user() function will add the data stored in user var
 
 ### Content of `users.json` after calling `add_user()` function:
 
-```
+```text
 [
     {
         "user_name": "John Smith",
@@ -72,13 +77,14 @@ add_user(user) #Calling add_user() function will add the data stored in user var
 ```
 
 ## `load_users()`
+
 `load_users()` function loads users from `users.json` file. If the file is empty, this function returns an empty list. Otherwise, it returns a list of dictionaries containing users' data.
 
 ## Example of usage
 
-### Content of `users.json` file before calling `load_users()` function:
+### Content of `users.json` file before calling `load_users()` function
 
-```
+```text
 [
     {
         "user_name": "John Smith",
@@ -97,7 +103,7 @@ add_user(user) #Calling add_user() function will add the data stored in user var
 ]
 ```
 
-### Code:
+### Code
 
 ```python
 users = load_users() #We call load_users function and assign its returned value to users variable
@@ -106,18 +112,19 @@ print(users) #Let's check what's inside users variable now
 
 ### Content of `users` variable after calling `load_users()` function
 
-```
+```text
 [{'user_name': 'John Smith', 'user_pesel': '02070803628', 'user_nip': '1234563218', 'user_regon': '380186266', 'user_id': 1}, {'user_name': 'Will Jefferson', 'user_pesel': '04211507457', 'user_nip': '6462933516', 'user_regon': '243510052', 'user_id': 2}]
 ```
 
 ## `remove_user()`
+
 `remove_user()` function removes a user from `users.json` file **if the user exists in that file**.  It takes one argument which is user id (integer number) and searches the file for a user with that id. If the user is found, their data is deleted from `users.json` file. Otherwise the function ends, returning nothing.
 
 ## Example of usage
 
-### Content of `users.json` file before calling `remove_user()` function:
+### Content of `users.json` file before calling `remove_user()` function
 
-```
+```text
 [
     {
         "user_name": "John Smith",
@@ -136,15 +143,15 @@ print(users) #Let's check what's inside users variable now
 ]
 ```
 
-### Code:
+### Code
 
 ```python
 remove_user(1) #We want to remove a user from users.json file, whose id is equal to 1
 ```
 
-### Content of `users.json` file after calling `remove_user()` function:
+### Content of `users.json` file after calling `remove_user()` function
 
-```
+```text
 [
     {
         "user_name": "Will Jefferson",
@@ -162,9 +169,9 @@ remove_user(1) #We want to remove a user from users.json file, whose id is equal
 
 ## Example of usage
 
-### Content of `users.json` file before calling `edit_user()` function:
+### Content of `users.json` file before calling `edit_user()` function
 
-```
+```text
 [
     {
         "user_name": "John Smith",
@@ -183,15 +190,16 @@ remove_user(1) #We want to remove a user from users.json file, whose id is equal
 ]
 ```
 
-### Code:
+### Code
+
 ```python
 updated_data = {"user_pesel" : "02283114559", "user_nip" : "8393628075", "user_regon" : "610905588" } #Let's create some new data for a user
 edit_user(2, updated_data) #The function will update data of user with id equal to 2 
 ```
 
-### Content of `users.json` file after calling `edit_user()` function:
+### Content of `users.json` file after calling `edit_user()` function
 
-```
+```text
 [
     {
         "user_name": "John Smith",
@@ -216,16 +224,16 @@ edit_user(2, updated_data) #The function will update data of user with id equal 
 
 ## Example of usage
 
-### Code:
+### Code
 
 ```python
 my_password = generate_password() #Generating new password and assigning it to my_password variable
 print(my_password) #Let's check our password
 ```
 
-### Output:
+### Output
 
-```
+```text
 n^1M!Azt%om&)+1
 ```
 
@@ -235,7 +243,7 @@ n^1M!Azt%om&)+1
 
 ## Example of usage
 
-### Code:
+### Code
 
 ```python
 correct_pesel = "04211507457"
@@ -244,9 +252,9 @@ print(validate_pesel(correct_pesel))
 print(validate_pesel(incorrect_pesel))
 ```
 
-### Output:
+### Output
 
-```
+```text
 True
 False
 ```
@@ -257,7 +265,8 @@ False
 
 ## Example of usage
 
-### Code:
+### Code
+
 ```python
 correct_nip = "1234563218"
 incorrect_nip = "1234563218"
@@ -265,9 +274,9 @@ print(validate_nip(correct_nip))
 print(validate_nip(incorrect_nip))
 ```
 
-### Output:
+### Output
 
-```
+```text
 True
 False
 ```
@@ -278,7 +287,7 @@ False
 
 ## Example of usage
 
-### Code:
+### Code
 
 ```python
 correct_regon = "380186266"
@@ -287,9 +296,9 @@ print(validate_regon(correct_regon))
 print(validate_regon(incorrect_regon))
 ```
 
-### Output:
+### Output
 
-```
+```text
 True
 False
 ```
@@ -299,7 +308,7 @@ False
 
 ## Example of usage
 
-### Code:
+### Code
 
 ```python
 good_password = "n^1M!Azt%om&)+1" #Strong password
@@ -310,15 +319,15 @@ print(validate_password(bad_password_1))
 print(validate_password(bad_password_2))
 ```
 
-### Output:
+### Output
 
-```
+```text
 True
 False
 False
 ```
 
-## Best practices:
+## Best practices
 
 ### Managing users
 
@@ -329,6 +338,7 @@ False
 ### Passwords
 
 To make sure that your password is hacker-proof, make sure to follow these few rules:
+
 - Your password should be at least 12 characters long
 - Your password should contain special characters, numbers, and small/capital letters
 - Your password shouldn't contain commonly used patterns such as "admin", "qwerty", or "test"
@@ -336,4 +346,4 @@ To make sure that your password is hacker-proof, make sure to follow these few r
 ### Storing data
 
 - Make sure to store data in a safe place 
-- Regularly back up encrypted data to prevent data loss due to accidental deletion, corruption, or malicious attacks 
+- Regularly back up encrypted data to prevent data loss due to accidental deletion, corruption, or malicious attacks
