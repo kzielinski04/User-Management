@@ -272,7 +272,7 @@ True
 False
 ```
 
-## `validate_nip()`
+## `validate_regon()`
 
 `validate_regon()` checks whether the user's regon is correct. First, it checks if the length of pesel is correct (9 or 14 characters), and then it counts the value of control digit and compares it to the last digit of nip. If everything is correct, the function returns True, otherwise it returns False.
 
