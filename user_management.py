@@ -330,10 +330,3 @@ def validate_password(password:str) -> bool:
     if value_counter == 0:
         return False
     return True
-
-good_password = "n^1M!Azt%om&)+1" #Strong password
-bad_password_1 = "kjAs2833LL" #Too short, lack of special characters
-bad_password_2 = "kajsgu@###222qwerty" #Lack of capital letters, contains a commonly used pattern
-print(validate_password(good_password))
-print(validate_password(bad_password_1))
-print(validate_password(bad_password_2))
